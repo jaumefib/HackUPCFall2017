@@ -1,6 +1,11 @@
+//NPM Express
 var express = require('express');
 var app = express();
+
+//NPM Body-Parser
 var bodyParser = require('body-parser');
+
+//NPM Request
 var request = require('request');
 app.use(bodyParser.json())
 
@@ -16,7 +21,7 @@ app.get('/', function(request, response) {
 
 //Test
 app.get('/hello', function(req, res) {
-  res.send('hello');
+  res.send('hello world!');
 });
 
 // Verify
@@ -25,7 +30,7 @@ app.get('/webhook', function(req, res) {
 });
 
 
-//Post of a msg
+//Post: MSG received
 app.post('/webhook/', function (req, res) {
   var data = req.body;
 
@@ -52,17 +57,19 @@ app.post('/webhook/', function (req, res) {
     // You must send back a 200, within 20 seconds, to let us know
     // you've successfully received the callback. Otherwise, the request
     // will time out and we will keep trying to resend.
+
     res.sendStatus(200);
   }
 });
-  
+
+//Analize MSG received
 function receivedMessage(event) {
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
   var timeOfMessage = event.timestamp;
   var message = event.message;
 
-  console.log("Received message for user %d and page %d at %d with message:", 
+  console.log("Received message for user %d and page %d at %d with message:",
     senderID, recipientID, timeOfMessage);
   console.log(JSON.stringify(message));
 
@@ -88,23 +95,27 @@ function receivedMessage(event) {
   }
 }
 
+//Optional
 function sendGenericMessage(recipientId, messageText) {
   // To be expanded in later sections
 }
 
+//Send a response
 function sendTextMessage(recipientId, messageText) {
+
   var messageData = {
     recipient: {
       id: recipientId
     },
     message: {
-      text: messageText
+      text: messageText + " holaaaa"
     }
   };
 
   callSendAPI(messageData);
 }
 
+//FaceBook API
 function callSendAPI(messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages/',
@@ -117,14 +128,14 @@ function callSendAPI(messageData) {
       var recipientId = body.recipient_id;
       var messageId = body.message_id;
 
-      console.log("Successfully sent generic message with id %s to recipient %s", 
+      console.log("Successfully sent generic message with id %s to recipient %s",
         messageId, recipientId);
     } else {
       console.error("Unable to send message.");
       console.error(response);
       console.error(error);
     }
-  });  
+  });
 }
 
 app.listen(process.env.PORT || 5000);
