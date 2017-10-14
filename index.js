@@ -5,13 +5,16 @@ app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 
+
 app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
 // Verify
 app.get('/webhook', function(req, res) {
-  res.send('hola');
+  res.status(200).send(req.query['hub.challenge']);
+   
+    res.send('hola');
 });
 
 app.listen(app.get('port'), function() {
