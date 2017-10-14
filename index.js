@@ -1,8 +1,6 @@
 var express = require('express');
 var app = express();
 
-app.set('port', (process.env.PORT || 5000));
-
 app.use(express.static(__dirname + '/public'));
 
 // Views is directory for all template files
@@ -18,17 +16,21 @@ app.get('/webhook', function(req, res) {
   res.status(200).send(req.query['hub.challenge']);
 });
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
-
-
-
-
 
 //Post of a msg
-app.post('/webhook', function (req, res) {
- console.log("REBUT");
+app.post('/webhook/', function (req, res) {
+    messaging_events = req.body.entry[0].messaging;
+    
+    for (i = 0; i < messaging_events.legth; i++) {
+        event = rq.body.entry[0].messaging[i];
+        sender = event.sender.id;
+        if (event.message && event.message.text) {
+            text = event.message.text;
+            console.log(text);
+        }
+    }
+    res.sendStatus(200);
 });
   
 
+app.listen(process.env.PORT || 5000);
