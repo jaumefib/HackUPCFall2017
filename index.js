@@ -13,10 +13,7 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
-// Verify
-app.get('/webhook', function(req, res) {
-  res.status(200).send(req.query['hub.challenge']);
-});
+
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
