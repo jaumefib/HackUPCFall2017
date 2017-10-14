@@ -1,0 +1,26 @@
+{
+  "name": "skychat",
+  "version": "1.0.0",
+  "description": "FB Messenger Bot to search the best flights with Skyscanner",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaumefib/HackUPCFall2017.git"
+  },
+  "keywords": [
+    "skyscanner"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaumefib/HackUPCFall2017/issues"
+  },
+  "homepage": "https://github.com/jaumefib/HackUPCFall2017#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
