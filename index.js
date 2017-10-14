@@ -1,7 +1,8 @@
 var express = require('express');
 var app = express();
-
-app.set('port', (process.env.PORT || 5000));
+var bodyParser = require('body-parser');
+var request = require('request');
+app.use(bodyParser.json())
 
 app.use(express.static(__dirname + '/public'));
 
@@ -13,17 +14,19 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
+//Test
+app.get('/hello', function(req, res) {
+  res.send('hello');
+});
+
 // Verify
 app.get('/webhook', function(req, res) {
   res.status(200).send(req.query['hub.challenge']);
 });
 
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
 
-//Post
-app.post('/webhook', function (req, res) {
+//Post of a msg
+app.post('/webhook/', function (req, res) {
   var data = req.body;
 
   // Make sure this is a page subscription
@@ -81,7 +84,7 @@ function receivedMessage(event) {
         sendTextMessage(senderID, messageText);
     }
   } else if (messageAttachments) {
-    sendTextMessage(senderID, "Hello");
+    sendTextMessage(senderID, "Message with attachment received");
   }
 }
 
@@ -104,7 +107,7 @@ function sendTextMessage(recipientId, messageText) {
 
 function callSendAPI(messageData) {
   request({
-    uri: 'https://graph.facebook.com/v2.6/me/messages',
+    uri: 'https://graph.facebook.com/v2.6/me/messages/',
     qs: { access_token: 'EAAERQwLFnEwBALjWcZBqXZBdoaYXYFt9cSvwDxXGb4oARA3eUZAFy3jUAOlXetCaG3GmCnrnfWCWxe98iZCil5ZAuSjcsrMua9NazIjX7996s0z5NdGZBbLFfOQABeVNDYUfvua1YR2V0pAR9K4LVtZAZCrOfQ1B6icCfr8ZAjhDDj0HasK5f8244' },
     method: 'POST',
     json: messageData
@@ -123,3 +126,5 @@ function callSendAPI(messageData) {
     }
   });  
 }
+
+app.listen(process.env.PORT || 5000);
