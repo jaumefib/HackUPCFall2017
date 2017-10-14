@@ -25,6 +25,10 @@ app.listen(app.get('port'), function() {
 //Post of a msg
 app.post('/webhook', function (req, res) {
   console.log("Message data: ", res);
+    app.get('/webhook', function(req, res) {
+        res.send(res);
+        res.status(200).send(req.query['hub.challenge']);
+    });
 });
   
 
