@@ -35,15 +35,17 @@ function comanda_hello() {
   console.log("Hello, welcome to SkyChat.");
   console.log("I can search the best flights for you. ");
   console.log("     ");
-
+  console.log("If you want to fly to somewhere text me: 'I want to fly from [Location1] to [Location2]'");
+  console.log("And if you want to fly in a context of time don't forget to remind me that: 'I want to departure in yyyy-mm-dd and arrive in yyyy-mm-dd'");
+  console.log("In case that the time doesn't matter to you, don't put it.");
+  console.log("Have a good flight ! ✈");
+  console.log("  ");
 }
 
 function comanda_default() {
   console.log("Sorry, I didn't understand you. Can I help you? ");
   console.log(" ");
 }
-
-
 
 function comanda_fly(q) {
   originPlace = "";
