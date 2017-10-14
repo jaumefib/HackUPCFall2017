@@ -1,4 +1,4 @@
-Hello, you can consult me flights information.
+Hello, can you consult for me information about flights?
 
 Follow this formats:
 -I want to fly from Barcelona to Amsterdam in 23/11/2017
