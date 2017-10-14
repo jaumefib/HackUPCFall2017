@@ -108,7 +108,7 @@ function sendTextMessage(recipientId, messageText) {
       id: recipientId
     },
     message: {
-      text: messageText + " holaaaa"
+      text: messageText
     }
   };
 
