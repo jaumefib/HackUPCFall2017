@@ -1,5 +1,7 @@
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
+app.use(bodyParser.json())
 
 app.use(express.static(__dirname + '/public'));
 
@@ -9,6 +11,11 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
   response.render('pages/index');
+});
+
+//Test
+app.get('/hello', function(req, res) {
+  res.send('hello');
 });
 
 // Verify
