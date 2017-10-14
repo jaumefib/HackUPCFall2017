@@ -14,7 +14,7 @@ app.get('/', function(request, response) {
 app.get('/webhook', function(req, res) {
   res.status(200).send(req.query['hub.challenge']);
    
-    res.send('hola');
+    
 });
 
 app.listen(app.get('port'), function() {
@@ -23,7 +23,7 @@ app.listen(app.get('port'), function() {
 
 //Post of a msg
 app.post('/webhook', function (req, res) {
-  console.log("Message data: ", res);
+  res.send('REBUT');
    
 });
   
