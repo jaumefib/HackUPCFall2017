@@ -1,8 +1,13 @@
 
 var S = require('string');
+
 // prova de les funcions de fly
+detect_commands("Hello");
 detect_commands("I want to fly from Barcelona to Madrid");
-detect_commands("How are you doing");
+detect_commands("I want to fly");
+detect_commands("gfgf fgjfgm fgjfg");
+detect_commands("I want to fly from London to Lisboa and I want to departure in 2017-10-10 and arrive in 2017-10-15");
+detect_commands("Flight from [Loc1] to [Loc2]");
 
 // Variables globals
 var country = "";
@@ -14,20 +19,31 @@ var outboundPartialDate = "";
 var inboundPartialDate = "";
 
 
-
-
-
-
-
-
 // funcio gestionar missatge
 
-function detect_commands(q) {
-  S(q).toLowerCase();
+function detect_commands(tmp) {
+  console.log(tmp);
+  console.log(" ");
+  var q = tmp.toLowerCase();
   if (S(q).contains("fly") || S(q).includes("flight")) comanda_fly(q);
   //else if (S(q).contains("car") || S(q).includes("driver")) comanda_car(q);
   else if (S(q).contains('hello') ||  S(q).includes("hi") || S(q).includes("help") ) comanda_hello();
+  else comanda_default();
 }
+
+function comanda_hello() {
+  console.log("Hello, welcome to SkyChat.");
+  console.log("I can search the best flights for you. ");
+  console.log("     ");
+
+}
+
+function comanda_default() {
+  console.log("Sorry, I didn't understand you. Can I help you? ");
+  console.log(" ");
+}
+
+
 
 function comanda_fly(q) {
   originPlace = "";
@@ -38,13 +54,13 @@ function comanda_fly(q) {
     var i, j;
     i =  S(q).indexOf("from")+5;
     j = i;
-    for (i; i > 0 && q[i] != ' ' && i < S(q).length; ++i) {
+    for (i; i > 0 && i < S(q).length && q[i] != ' '; ++i) {
       originPlace = originPlace + q[i];
     }
     var tmp = "";
     for (j; j < S(q).length; ++j) tmp = tmp + q[j];
     q = tmp;
-    for (i = S(q).indexOf("to")+3; i > 0 && q[i] != ' ' && i < S(q).length; ++i) {
+    for (i = S(q).indexOf("to")+3; i > 0 && i < S(q).length && q[i] != ' '; ++i) {
       destinationPlace = destinationPlace + q[i];
     }
   }
@@ -61,13 +77,13 @@ function comanda_fly(q) {
   if (S(q).indexOf("in") != -1) {
     i =  S(q).indexOf("in")+3;
     j = i;
-    for (i; i > 0 && q[i] != ' ' && i < S(q).length; ++i) {
+    for (i; i > 0 && i < S(q).length && q[i] != ' '; ++i) {
       outboundPartialDate = outboundPartialDate + q[i];
     }
     var tmp = "";
     for (j; j < S(q).length; ++j) tmp = tmp + q[j];
     q = tmp;
-    for (i = S(q).indexOf("in")+3; i > 0 && q[i] != ' ' && i < S(q).length; ++i) {
+    for (i = S(q).indexOf("in")+3; i > 0 && i < S(q).length && q[i] != ' '; ++i) {
       inboundPartialDate = inboundPartialDate + q[i];
     }
   }
@@ -83,6 +99,7 @@ function comanda_fly(q) {
   if (inboundPartialDate.length != 0) {
     console.log("Arrival " + inboundPartialDate);
   }
+  console.log(" ");
 
     // falta la opcio nomes de anada
 
