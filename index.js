@@ -1,10 +1,13 @@
 var express = require('express');
 var app = express();
 
-app.set('port', (process.env.PORT || 5000 || 25559));
+app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 
+// Views is directory for all template files
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
   response.render('pages/index');
@@ -13,8 +16,6 @@ app.get('/', function(request, response) {
 // Verify
 app.get('/webhook', function(req, res) {
   res.status(200).send(req.query['hub.challenge']);
-   
-    
 });
 
 app.listen(app.get('port'), function() {
