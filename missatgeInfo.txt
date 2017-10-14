@@ -1,6 +1,6 @@
 Hello, can you consult for me information about flights?
 
 Follow this formats:
--I want to fly from Barcelona to Amsterdam in 23/11/2017
+-I want to fly from Barcelona to Amsterdam in 2017-11-3
 -Fly from Paris to New York
 -Flights from Barcelona
