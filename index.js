@@ -11,7 +11,7 @@ app.get('/', function(request, response) {
 
 // Verify
 app.get('/webhook', function(req, res) {
-  res.status(200).send(req.query['hub.challenge']);
+  res.send('hola');
 });
 
 app.listen(app.get('port'), function() {
