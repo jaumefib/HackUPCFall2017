@@ -1,0 +1,6 @@
+Hello, you can consult me flights information.
+
+Follow this formats:
+-I want to fly from Barcelona to Amsterdam in 23/11/2017
+-Fly from Paris to New York
+-Flights from Barcelona
