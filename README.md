@@ -1,6 +1,7 @@
 # HackUPCFall2017
 
-SkyChat is a chatbot that allows you to find the best flights offered by Skyscanner.
+SkyChat is a chatbot that allows you to find the best flights offered by Skyscanner. In an esay and useful way using FaceBook Messenger.
+Developed during HackUPC in Barcelona 2017. 
 
 ## Tools used
 - Skyscanner's API: https://skyscanner.github.io/slate/
