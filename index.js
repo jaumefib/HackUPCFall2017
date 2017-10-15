@@ -183,7 +183,7 @@ function comanda_fly(recipientId, q) {
 
 
 
-    /*var url = "http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/" +
+    var url = "http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/" +
       country + "/" + currency + "/" + locale + "/" + originPlace + "/" + destinationPlace +
       "/" + outboundPartialDate + "/" + inboundPartialDate + "/" + "?apiKey=ha362120123102246681333182178859";
 
@@ -201,18 +201,18 @@ function comanda_fly(recipientId, q) {
       } else {
         console.log(`${err}`);
       }
-    };);*/
+    };);
 
 }
 
-/*function searchInData(recipientId, data) {
+function searchInData(recipientId, data) {
 
   console.log(data);
 
-  var flightMessage = ;
+  //var flightMessage = ;
 
-  sendTextMessage(recipientId, flightMessage);
-}*/
+  //sendTextMessage(recipientId, flightMessage);
+}
 
 //Send a response
 function sendTextMessage(recipientId, messageText) {
