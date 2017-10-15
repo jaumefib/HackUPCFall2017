@@ -209,13 +209,13 @@ function searchInData(recipientId, data) {
 
   var flightMessage = "";
 
-  /*if (data.length == 0 || !data) flightMessage = "Not flights found";
-  else {*/
+  if (data.length == 0 || !data) flightMessage = "Not flights found";
+  else {
 
     for (var i = 0; i < 5 && i < data.Quotes.length; ++i) {
       flightMessage += data.Quotes[i].MinPrice + "€\n\n";
 
-      /*flightMessage += "Outbound:\n"
+      flightMessage += "Outbound:\n"
 
       flightMessage += searchCarrierId(data, data.Quotes[i].OutboundLeg.CarrierIds[0]) + "\n";
 
@@ -227,12 +227,12 @@ function searchInData(recipientId, data) {
         flightMessage += searchCarrierId(data, data.Quotes[i].InboundLeg.CarrierIds[0]) + "\n";
 
         flightMessage += searchCity(data, data.Quotes[i].InboundLeg.OriginId, data.Quotes[i].InboundLeg.DestinationId) + "\n";
-      }*/
+      }
 
       sendTextMessage(recipientId, flightMessage);
       flightMessage = "";
     }
-  //}
+  }
 }
 
 function searchCity(data, origId, destId) {
