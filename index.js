@@ -221,13 +221,15 @@ function searchInData(recipientId, data) {
 
       flightMessage += searchCity(data, data.Quotes[i].OutboundLeg.OriginId) + " ✈ " + searchCity(data,data.Quotes[i].OutboundLeg.DestinationId) + "\n";
 
-      //if (data.Quotes[i].InboundLeg) {
+      flightMessage += data.Quotes[i].InboundLeg.keys(jsonArray).length + "\n";
+
+      if (data.Quotes[i].InboundLeg.keys(jsonArray).length > 0) {
         flightMessage += "Return:\n"
 
         flightMessage += searchCarrierId(data, data.Quotes[i].InboundLeg.CarrierIds[0]) + "\n";
 
         flightMessage += searchCity(data, data.Quotes[i].InboundLeg.OriginId, data.Quotes[i].InboundLeg.DestinationId) + "\n";
-      //}
+      }
 
       sendTextMessage(recipientId, flightMessage);
       flightMessage = "";
