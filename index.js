@@ -244,7 +244,8 @@ function searchCity(data, origId, destId) {
     if (data.Places[j].PlaceId == destId) dest = data.Places[j].SkyscannerCode;
   }
 
-  return orig + "  ✈  " + dest;
+  var tmp = orig + "  ✈  " + dest;
+  return tmp;
 }
 
 function searchCarrierId(data, carrierId) {
