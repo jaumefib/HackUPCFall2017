@@ -209,8 +209,8 @@ function searchInData(recipientId, data) {
 
   var flightMessage = "";
 
-  if (data.length == 0 || !data) flightMessage = "Not flights found";
-  else {
+  /*if (data.length == 0 || !data) flightMessage = "Not flights found";
+  else {*/
 
     for (var i = 0; i < 5 && i < data.length; ++i) {
       flightMessage += data.Quotes[i].MinPrice + "€\n\n";
@@ -232,7 +232,7 @@ function searchInData(recipientId, data) {
       sendTextMessage(recipientId, flightMessage);
       flightMessage = "";
     }
-  }
+  //}
 }
 
 function searchCity(data, origId, destId) {
