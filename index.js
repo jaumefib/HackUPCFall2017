@@ -222,11 +222,11 @@ function searchInData(recipientId, data) {
       flightMessage += searchCity(data, data.Quotes[i].OutboundLeg.OriginId) + " ✈ " + searchCity(data,data.Quotes[i].OutboundLeg.DestinationId) + "\n";
 
       if (!(data.Quotes[i].InboundLeg === undefined) || !(data.Quotes[i].InboundLeg === null)) {
-        flightMessage += "Return:\n"
+        flightMessage += "Return:" + data.Quotes[i].InboundLeg.CarrierIds[0];
 
-        flightMessage += searchCarrierId(data, data.Quotes[i].InboundLeg.CarrierIds[0]) + "\n";
+        //flightMessage += searchCarrierId(data, data.Quotes[i].InboundLeg.CarrierIds[0]) + "\n";
 
-        flightMessage += searchCity(data, data.Quotes[i].InboundLeg.OriginId, data.Quotes[i].InboundLeg.DestinationId) + "\n";
+        //flightMessage += searchCity(data, data.Quotes[i].InboundLeg.OriginId, data.Quotes[i].InboundLeg.DestinationId) + "\n";
       }
 
       sendTextMessage(recipientId, flightMessage);
