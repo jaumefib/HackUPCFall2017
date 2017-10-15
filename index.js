@@ -118,9 +118,9 @@ function detect_commands(recipientId, tmp) {
 //Command Hello
 function comanda_hello(recipientId) {
   var helloMessage = "Hello, welcome to SkyChat.\nI can search the best flights for you.\n\n" +
-    "If you want to fly to somewhere text me: 'I want to fly from [Location1] to [Location2]'\n" +
-    "And if you want to fly in a context of time don't forget to remind me that: 'I want to departure in yyyy-mm-dd and arrive in yyyy-mm-dd'\n" +
-    "In case that the time doesn't matter to you, don't put it.\n" +
+    "If you want to fly to somewhere text me:\n'I want to fly from [Location1] to [Location2]'\n\n" +
+    "And if you want to fly in a context of time don't forget to remind me that:\n'I want to departure in yyyy-mm-dd and arrive in yyyy-mm-dd'\n\n" +
+    "In case that the time doesn't matter to you, don't put it.\n\n" +
     "Have a good flight ! ✈";
 
   sendTextMessage(recipientId, helloMessage);
