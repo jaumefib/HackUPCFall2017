@@ -219,7 +219,7 @@ function searchInData(recipientId, data) {
 
       flightMessage += searchCarrierId(data, data.Quotes[i].OutboundLeg.CarrierIds[0]) + "\n";
 
-      flightMessage += searchCity(data, data.Quotes[i].OutboundLeg.OriginId, data.Quotes[i].OutboundLeg.DestinationId) + "\n";
+      flightMessage += searchCity(data, data.Quotes[i].OutboundLeg.OriginId) + " ✈ " + searchCity(data,data.Quotes[i].OutboundLeg.DestinationId)"\n";
 
       if (data.Quotes[i].InboundLeg) {
         flightMessage += "Return:\n"
@@ -235,16 +235,15 @@ function searchInData(recipientId, data) {
   }
 }
 
-function searchCity(data, origId, destId) {
-  var orig = "";
-  var dest = "";
-  for (var j = 0; j < data.Places.lenght; ++j) {
-    if (parseInt(data.Places[j].PlaceId) == parseInt(origId)) orig += "ciudadencontrada";//data.Places[j].SkyscannerCode;
-    //if (data.Places[j].PlaceId == destId) dest += data.Places[j].SkyscannerCode;
+function searchCity(data, cityId) {
+  var j = 0;
+  var city = "";
+
+  for (j; j < data.Places.length && city.length == 0; ++j) {
+    if (data.Places[j].PlaceId == cityId) city = data.Places[j].SkyscannerCode;
   }
 
-  var tmp = orig + "  ✈  " + dest;
-  return tmp;
+  return city;
 }
 
 function searchCarrierId(data, carrierId) {
