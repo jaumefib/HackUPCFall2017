@@ -1,6 +1,6 @@
 # SkyChat
 
-SkyChat is a chatbot that allows you to find the best flights offered by Skyscanner. In an esay and useful way using FaceBook Messenger.
+SkyChat is a chatbot that allows you to find the best flights offered by Skyscanner. In an esay and useful way using Facebook Messenger.
 
 Facebook page: https://www.facebook.com/SkyChat-921492091334357/
 
