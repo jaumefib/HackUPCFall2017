@@ -1,0 +1,19 @@
+Samples of interaction:
+
+User -> Hello/Hi/Help
+SkyChat -> (SkyChat presentation and usage)
+
+User -> Can you consult for me information about flights?
+SkyChat -> (It will print out all the information of the live flights)
+
+User -> I want to fly from BCN to AMS
+SkyChat -> (It will print out all the flights from Barcelona to Amsterdam)
+
+User -> I want to fly from LON to LISB and I want to departure in 2017-10-20 and arrive in 2017-10-25
+SkyChat -> (It will print out cheapest flights especified with the command)
+
+
+Follow this formats:
+-I want to fly from BCN to AMS in 2017-11-10
+-Fly from BCN to NY
+-Flights from BCN
