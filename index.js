@@ -207,7 +207,7 @@ function comanda_fly(recipientId, q) {
 
 function searchInData(recipientId, data) {
 
-  var flightMessage = "holaaa";
+  var flightMessage = data.Quotes[0].MinPrice;
 
   /*if (data.length == 0 || !data) flightMessage = "Not flights found";
   else {
