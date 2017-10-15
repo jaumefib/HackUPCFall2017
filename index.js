@@ -215,18 +215,18 @@ function searchInData(recipientId, data, inboundPartialDate) {
     for (var i = 0; i < 5 && i < data.Quotes.length; ++i) {
       flightMessage += data.Quotes[i].MinPrice + "€\n\n";
 
-      flightMessage += "Outbound :\n\n"
+      flightMessage += "Outbound:\n\n"
 
-      flightMessage += searchCarrierId(data, data.Quotes[i].OutboundLeg.CarrierIds[0]) + "\n";
+      flightMessage += "    " + searchCarrierId(data, data.Quotes[i].OutboundLeg.CarrierIds[0]) + "\n";
 
-      flightMessage += searchCity(data, data.Quotes[i].OutboundLeg.OriginId) + " ✈ " + searchCity(data,data.Quotes[i].OutboundLeg.DestinationId) + "\n";
+      flightMessage += "    " + searchCity(data, data.Quotes[i].OutboundLeg.OriginId) + " ✈ " + searchCity(data,data.Quotes[i].OutboundLeg.DestinationId) + "\n\n";
 
       if (inboundPartialDate.length) {
-        flightMessage += "Return:" ;
+        flightMessage += "Return: \n\n";
 
-        flightMessage += searchCarrierId(data, data.Quotes[i].InboundLeg.CarrierIds[0]) + "\n";
+        flightMessage += "    " + searchCarrierId(data, data.Quotes[i].InboundLeg.CarrierIds[0]) + "\n";
 
-        flightMessage += searchCity(data, data.Quotes[i].InboundLeg.OriginId) + " ✈ " + searchCity(data,data.Quotes[i].InboundLeg.DestinationId) + "\n";
+        flightMessage += "    " + searchCity(data, data.Quotes[i].InboundLeg.OriginId) + "   ✈   " + searchCity(data,data.Quotes[i].InboundLeg.DestinationId) + "\n";
 
       }
 
@@ -254,7 +254,8 @@ function searchCarrierId(data, carrierId) {
     if (data.Carriers[j].CarrierId == carrierId) carrier = data.Carriers[j].Name;
   }
 
-  return carrier;
+  if (carrier) return carrier;
+  else return "Carrier not found ❌"
 }
 
 //Send a response
