@@ -222,7 +222,7 @@ function searchInData(recipientId, data) {
       flightMessage += searchCity(data, data.Quotes[i].OutboundLeg.OriginId) + " ✈ " + searchCity(data,data.Quotes[i].OutboundLeg.DestinationId) + "\n";
 
       if (!(data.Quotes[i].InboundLeg === undefined) || !(data.Quotes[i].InboundLeg === null)) {
-        flightMessage += "Return:" + data.Quotes[i].InboundLeg.CarrierIds[0];
+        flightMessage += "Return:" ;
 
         //flightMessage += searchCarrierId(data, data.Quotes[i].InboundLeg.CarrierIds[0]) + "\n";
 
