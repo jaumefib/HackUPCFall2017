@@ -228,10 +228,11 @@ function searchInData(recipientId, data) {
 
         flightMessage += searchCity(data, data.Quotes[i].InboundLeg.OriginId, data.Quotes[i].InboundLeg.DestinationId) + "\n";
       }*/
+
+      sendTextMessage(recipientId, flightMessage);
+      flightMessage = "";
     }
   }
-
-  sendTextMessage(recipientId, flightMessage);
 }
 
 function searchCity(data, origId, destId) {
