@@ -12,9 +12,9 @@ var request = require('request');
 var S = require('string');
 
 // Variables globals
-var country = "";
-var currency = "";
-var locale = "";
+var country = "ES";
+var currency = "eur";
+var locale = "en-US";
 var originPlace = "";
 var destinationPlace = "";
 var outboundPartialDate = "";
@@ -106,20 +106,20 @@ function receivedMessage(event) {
 function detect_commands(recipientId, tmp) {
 
   var q = tmp.toLowerCase();
-  //if (S(q).contains("fly") || S(q).includes("flight")) comanda_fly(recipientId, q);
+  if (S(q).contains("fly") || S(q).includes("flight")) comanda_fly(recipientId, q);
 
   //TODO: Car commands
   //else if (S(q).contains("car") || S(q).includes("driver")) comanda_car(q);
 
-  if (S(q).contains('hello') ||  S(q).includes("hi") || S(q).includes("help") ) comanda_hello(recipientId);
+  else if (S(q).contains('hello') ||  S(q).includes("hi") || S(q).includes("help") ) comanda_hello(recipientId);
   else comanda_default(recipientId);
 }
 
 //Command Hello
 function comanda_hello(recipientId) {
-  var helloMessage = "Hello, welcome to *SkyChat*.\nI can search the best flights for you.\n\n" +
-    "If you want to fly to somewhere text me:\n_'I want to fly from [Location1] to [Location2]'_\n\n" +
-    "And if you want to fly in a context of time don't forget to remind me that:\n_'I want to departure in yyyy-mm-dd and arrive in yyyy-mm-dd'_\n\n" +
+  var helloMessage = "Hello, welcome to SkyChat.\nI can search the best flights for you.\n\n" +
+    "If you want to fly to somewhere text me:\n'I want to fly from [Location1] to [Location2]'\n\n" +
+    "And if you want to fly in a context of time don't forget to remind me that:\n'I want to departure in yyyy-mm-dd and arrive in yyyy-mm-dd'\n\n" +
     "In case that the time doesn't matter to you, don't put it.\n\n" +
     "Have a good flight ! ✈";
 
@@ -180,9 +180,35 @@ function comanda_fly(recipientId, q) {
     outboundPartialDate = "anytime";  //Departure
   }
     // falta la opcio nomes de anada
+    var url = "http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/" +
+      country + "/" + currency + "/" + locale + "/" + originPlace + "/" + destinationPlace +
+      "/" + outboundPartialDate + "/" + inboundPartialDate + "/" + "?apiKey=ha362120123102246681333182178859";
 
+    request(url, function requestCallback(err, response, events, recipientId) {
+      if (!err && response.statusCode === 200) {
+        console.log('Start search news:');
+        try{
+          var data = JSON.parse(events);
 
-  // ara crida a la funcio de GET de Skyscanner
+          searchInData(recipientId, data);
+        }
+        catch(err) {
+          console.log(`${err}`);
+        }
+      } else {
+        console.log(`${err}`);
+      }
+    };);
+
+}
+
+function searchInData(recipientId, data) {
+
+  console.log(data);
+  
+  /*var flightMessage = ;
+
+  sendTextMessage(recipientId, flightMessage);*/
 }
 
 //Send a response
