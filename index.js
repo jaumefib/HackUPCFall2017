@@ -95,9 +95,8 @@ function receivedMessage(event) {
 
     // If we receive a text message, check to see if it matches a keyword
     // and send back the example. Otherwise, just echo the text we received.
-    if (messageText) {
-        detect_commands(senderID, messageText);
-    }
+    if (messageText) detect_commands(senderID, messageText);
+
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Message with attachment received");
   }
@@ -105,23 +104,85 @@ function receivedMessage(event) {
 
 //Function to analize commands
 function detect_commands(recipientId, tmp) {
-  console.log(tmp);
-  console.log(" ");
+
   var q = tmp.toLowerCase();
-  if (S(q).contains("fly") || S(q).includes("flight")) comanda_fly(recipientId, q);
+  //if (S(q).contains("fly") || S(q).includes("flight")) comanda_fly(recipientId, q);
 
   //TODO: Car commands
   //else if (S(q).contains("car") || S(q).includes("driver")) comanda_car(q);
 
-  else if (S(q).contains('hello') ||  S(q).includes("hi") || S(q).includes("help") ) comanda_hello(recipientId);
+  if (S(q).contains('hello') ||  S(q).includes("hi") || S(q).includes("help") ) comanda_hello(recipientId);
   else comanda_default(recipientId);
 }
 
 //Command Hello
 function comanda_hello(recipientId) {
-  var helloMessage = "Have a good flight ! ✈";
+  var helloMessage = "Hello, welcome to SkyChat.\nI can search the best flights for you.\n\n" +
+    "If you want to fly to somewhere text me: 'I want to fly from [Location1] to [Location2]'\n" +
+    "And if you want to fly in a context of time don't forget to remind me that: 'I want to departure in yyyy-mm-dd and arrive in yyyy-mm-dd'\n" +
+    "In case that the time doesn't matter to you, don't put it.\n" +
+    "Have a good flight ! ✈";
 
   sendTextMessage(recipientId, helloMessage);
+}
+
+function comanda_default(recipientId) {
+  var defaultMessage = "Sorry, I didn't understand you. Can I help you?";
+
+  sendTextMessage(recipientId, defaultMessage);
+}
+
+function comanda_fly(recipientId, q) {
+  originPlace = "";
+  destinationPlace = "";
+  // si la comanda conte la paraula from
+  var original = q;
+  if (S(q).indexOf("from") != -1) {
+    var i, j;
+    i =  S(q).indexOf("from")+5;
+    j = i;
+    for (i; i > 0 && i < S(q).length && q[i] != ' '; ++i) {
+      originPlace = originPlace + q[i];
+    }
+    var tmp = "";
+    for (j; j < S(q).length; ++j) tmp = tmp + q[j];
+    q = tmp;
+    for (i = S(q).indexOf("to")+3; i > 0 && i < S(q).length && q[i] != ' '; ++i) {
+      destinationPlace = destinationPlace + q[i];
+    }
+  }
+  if (originPlace.length == 0) originPlace = "everywhere";
+  if (destinationPlace.length == 0) destinationPlace = "everywhere";
+
+  //originDestination = originplace
+  //destinationPlace = destinetionplace
+
+  // assignem la comanda original a q, que ha estat modificada
+  q = tmp;
+
+  inboundPartialDate = "";
+  outboundPartialDate = "";
+  if (S(q).indexOf("in") != -1) {
+    i =  S(q).indexOf("in")+3;
+    j = i;
+    for (i; i > 0 && i < S(q).length && q[i] != ' '; ++i) {
+      outboundPartialDate = outboundPartialDate + q[i];
+    }
+    var tmp = "";
+    for (j; j < S(q).length; ++j) tmp = tmp + q[j];
+    q = tmp;
+    for (i = S(q).indexOf("in")+3; i > 0 && i < S(q).length && q[i] != ' '; ++i) {
+      inboundPartialDate = inboundPartialDate + q[i];
+    }
+  }
+
+  if (outboundPartialDate.length == 0) {
+    outboundPartialDate = "anytime";  //Departure
+  }
+    // falta la opcio nomes de anada
+
+
+  // ara crida a la funcio de GET de Skyscanner
 }
 
 //Send a response
