@@ -207,8 +207,6 @@ function comanda_fly(recipientId, q) {
 
 function searchInData(recipientId, data) {
 
-  console.log(data);
-
   var flightMessage = "";
 
   if (data.length == 0 || !data) flightMessage = "Not flights found";
@@ -222,6 +220,14 @@ function searchInData(recipientId, data) {
       flightMessage += searchCarrierId(data, data.Quotes[i].OutboundLeg.CarrierIds[0]) + "\n";
 
       flightMessage += searchCity(data, data.Quotes[i].OutboundLeg.OriginId, data.Quotes[i].OutboundLeg.DestinationId) + "\n";
+
+      if (data.Quotes[i].InboundLeg) {
+        flightMessage += "Return:\n"
+
+        flightMessage += searchCarrierId(data, data.Quotes[i].InboundLeg.CarrierIds[0]) + "\n";
+
+        flightMessage += searchCity(data, data.Quotes[i].InboundLeg.OriginId, data.Quotes[i].InboundLeg.DestinationId) + "\n";
+      }
     }
   }
 
