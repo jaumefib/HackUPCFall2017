@@ -215,19 +215,19 @@ function searchInData(recipientId, data) {
     for (var i = 0; i < 5 && i < data.Quotes.length; ++i) {
       flightMessage += data.Quotes[i].MinPrice + "€\n\n";
 
-      flightMessage += "Outbound:\n"
+      flightMessage += "Outbound :\n\n"
 
       flightMessage += searchCarrierId(data, data.Quotes[i].OutboundLeg.CarrierIds[0]) + "\n";
 
       flightMessage += searchCity(data, data.Quotes[i].OutboundLeg.OriginId) + " ✈ " + searchCity(data,data.Quotes[i].OutboundLeg.DestinationId) + "\n";
 
-      if (data.Quotes[i].InboundLeg) {
+      //if (data.Quotes[i].InboundLeg) {
         flightMessage += "Return:\n"
 
         flightMessage += searchCarrierId(data, data.Quotes[i].InboundLeg.CarrierIds[0]) + "\n";
 
         flightMessage += searchCity(data, data.Quotes[i].InboundLeg.OriginId, data.Quotes[i].InboundLeg.DestinationId) + "\n";
-      }
+      //}
 
       sendTextMessage(recipientId, flightMessage);
       flightMessage = "";
