@@ -185,7 +185,7 @@ function comanda_fly(recipientId, q) {
 
     var url = "http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/" +
       country + "/" + currency + "/" + locale + "/" + originPlace + "/" + destinationPlace +
-      "/" + outboundPartialDate + "/" + inboundPartialDate + "/" + "?apiKey=ha362120123102246681333182178859";
+      "/" + outboundPartialDate + "/" + inboundPartialDate + "?apiKey=ha362120123102246681333182178859";
 
     request(url, function requestCallback(err, response, events) {
       if (!err && response.statusCode === 200) {
@@ -215,7 +215,7 @@ function searchInData(recipientId, data) {
     for (i; i < 5 && i < data.length; ++i) {
       flightMessage += data.Quotes[i].MinPrice + "€\n\n";
 
-      flightMessage += "Outbound:\n"
+      /*flightMessage += "Outbound:\n"
 
       flightMessage += searchCarrierId(data, data.Quotes[i].OutboundLeg.CarrierIds[0]) + "\n";
 
@@ -227,7 +227,7 @@ function searchInData(recipientId, data) {
         flightMessage += searchCarrierId(data, data.Quotes[i].InboundLeg.CarrierIds[0]) + "\n";
 
         flightMessage += searchCity(data, data.Quotes[i].InboundLeg.OriginId, data.Quotes[i].InboundLeg.DestinationId) + "\n";
-      }
+      }*/
     }
   }
 
