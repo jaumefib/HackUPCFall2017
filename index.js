@@ -221,8 +221,6 @@ function searchInData(recipientId, data) {
 
       flightMessage += searchCity(data, data.Quotes[i].OutboundLeg.OriginId) + " ✈ " + searchCity(data,data.Quotes[i].OutboundLeg.DestinationId) + "\n";
 
-      flightMessage += data.Quotes[i].InboundLeg.keys(jsonArray).length + "\n";
-
       if (!(data.Quotes[i].InboundLeg === undefined) || !(data.Quotes[i].InboundLeg === null)) {
         flightMessage += "Return:\n"
 
