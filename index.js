@@ -187,7 +187,7 @@ function comanda_fly(recipientId, q) {
       country + "/" + currency + "/" + locale + "/" + originPlace + "/" + destinationPlace +
       "/" + outboundPartialDate + "/" + inboundPartialDate + "/" + "?apiKey=ha362120123102246681333182178859";
 
-    request(url, requestCallback(err, response, events, recipientId) {
+    request(url, function requestCallback(err, response, events) {
       if (!err && response.statusCode === 200) {
         console.log('Start search news:');
         try{
