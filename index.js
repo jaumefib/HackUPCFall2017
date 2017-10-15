@@ -201,7 +201,7 @@ function comanda_fly(recipientId, q) {
       } else {
         console.log(`${err}`);
       }
-    };);
+    });
 
 }
 
