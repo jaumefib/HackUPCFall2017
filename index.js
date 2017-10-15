@@ -209,9 +209,45 @@ function searchInData(recipientId, data) {
 
   console.log(data);
 
-  //var flightMessage = ;
+  var flightMessage = "";
 
-  //sendTextMessage(recipientId, flightMessage);
+  if (data.length == 0 || !data) flightMessage = "Not flights found";
+  else {
+    var i = 0;
+    for (i; i < 5 && i < data.length; ++i) {
+      flightMessage += data.Quotes[i].MinPrice + "€\n\n";
+
+      flightMessage += "Outbound:\n"
+
+      flightMessage += searchCarrierId(data, data.Quotes[i].OutboundLeg.CarrierIds[0]) + "\n";
+
+      flightMessage += searchCity(data, data.Quotes[i].OutboundLeg.OriginId, data.Quotes[i].OutboundLeg.DestinationId) + "\n";
+    }
+  }
+
+  sendTextMessage(recipientId, flightMessage);
+}
+
+function searchCity(data, origId, destId) {
+  var j = 0;
+  var orig = "";
+  var dest = "";
+  for (j; j < data.Places.lenght && !(orig.lenght == 0 && dest.lenght == 0); ++j) {
+    if (data.Places[j].PlaceId == origId) orig = data.Places[j].SkyscannerCode;
+    if (data.Places[j].PlaceId == destId) dest = data.Places[j].SkyscannerCode;
+  }
+
+  return orig + "  ✈  " + dest;
+}
+
+function searchCarrierId(data, carrierId) {
+  var j = 0;
+  var carrier = "";
+  for (j; j < data.Carriers.length && carrier.length == 0; ++j) {
+    if (data.Carriers[j].CarrierId == carrierId) carrier = data.Carriers[j].Name;
+  }
+
+  return carrier;
 }
 
 //Send a response
