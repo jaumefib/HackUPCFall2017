@@ -118,7 +118,7 @@ function detect_commands(recipientId, tmp) {
 }
 
 //Command Hello
-function comanda_hello(recipientIdrecipientId) {
+function comanda_hello(recipientId) {
   var helloMessage = "Have a good flight ! ✈";
 
   sendTextMessage(recipientId, helloMessage);
