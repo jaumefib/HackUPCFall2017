@@ -212,7 +212,7 @@ function searchInData(recipientId, data) {
   /*if (data.length == 0 || !data) flightMessage = "Not flights found";
   else {*/
 
-    for (var i = 0; i < 5 && i < data.length; ++i) {
+    for (var i = 0; i < 5 && i < data.Quotes.length; ++i) {
       flightMessage += data.Quotes[i].MinPrice + "€\n\n";
 
       /*flightMessage += "Outbound:\n"
