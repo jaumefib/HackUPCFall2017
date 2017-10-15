@@ -106,12 +106,12 @@ function receivedMessage(event) {
 function detect_commands(recipientId, tmp) {
 
   var q = tmp.toLowerCase();
-  if (S(q).contains("fly") || S(q).includes("flight")) comanda_fly(recipientId, q);
+  //if (S(q).contains("fly") || S(q).includes("flight")) comanda_fly(recipientId, q);
 
   //TODO: Car commands
   //else if (S(q).contains("car") || S(q).includes("driver")) comanda_car(q);
 
-  else if (S(q).contains('hello') ||  S(q).includes("hi") || S(q).includes("help") ) comanda_hello(recipientId);
+  if (S(q).contains('hello') ||  S(q).includes("hi") || S(q).includes("help") ) comanda_hello(recipientId);
   else comanda_default(recipientId);
 }
 
@@ -132,7 +132,7 @@ function comanda_default(recipientId) {
   sendTextMessage(recipientId, defaultMessage);
 }
 
-function comanda_fly(recipientId, q) {
+/*function comanda_fly(recipientId, q) {
   originPlace = "";
   destinationPlace = "";
   // si la comanda conte la paraula from
@@ -180,7 +180,7 @@ function comanda_fly(recipientId, q) {
     outboundPartialDate = "anytime";  //Departure
   }
     // falta la opcio nomes de anada
-    /*var url = "http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/" +
+    var url = "http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/" +
       country + "/" + currency + "/" + locale + "/" + originPlace + "/" + destinationPlace +
       "/" + outboundPartialDate + "/" + inboundPartialDate + "/" + "?apiKey=ha362120123102246681333182178859";
 
@@ -198,11 +198,11 @@ function comanda_fly(recipientId, q) {
       } else {
         console.log(`${err}`);
       }
-    };);*/
+    };);
 
 }
 
-/*function searchInData(recipientId, data) {
+function searchInData(recipientId, data) {
 
   console.log(data);
 
