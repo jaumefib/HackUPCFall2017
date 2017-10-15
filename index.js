@@ -206,9 +206,9 @@ function searchInData(recipientId, data) {
 
   console.log(data);
 
-  /*var flightMessage = ;
+  var flightMessage = ;
 
-  sendTextMessage(recipientId, flightMessage);*/
+  sendTextMessage(recipientId, flightMessage);
 }*/
 
 //Send a response
