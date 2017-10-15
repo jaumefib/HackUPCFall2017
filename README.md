@@ -1,11 +1,14 @@
 # SkyChat
 
 SkyChat is a chatbot that allows you to find the best flights offered by Skyscanner. In an esay and useful way using FaceBook Messenger.
+
+Facebook page: https://www.facebook.com/SkyChat-921492091334357/
+
 Developed during HackUPC in Barcelona 2017. 
 
 ## Tools used
 - Skyscanner's API: https://skyscanner.github.io/slate/
-- FaceBook's API: https://developers.facebook.com/
+- Facebook's API: https://developers.facebook.com/
 - Heroku: https://www.heroku.com/
 
 
