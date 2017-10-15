@@ -193,7 +193,7 @@ function comanda_fly(recipientId, q) {
         try{
           var data = JSON.parse(events);
 
-          searchInData(recipientId, data);
+          searchInData(recipientId, data, inboundPartialDate);
         }
         catch(err) {
           console.log(`${err}`);
@@ -205,7 +205,7 @@ function comanda_fly(recipientId, q) {
 
 }
 
-function searchInData(recipientId, data) {
+function searchInData(recipientId, data, inboundPartialDate) {
 
   var flightMessage = "";
 
@@ -221,12 +221,13 @@ function searchInData(recipientId, data) {
 
       flightMessage += searchCity(data, data.Quotes[i].OutboundLeg.OriginId) + " ✈ " + searchCity(data,data.Quotes[i].OutboundLeg.DestinationId) + "\n";
 
-      if (!(data.Quotes[i].InboundLeg === undefined) || !(data.Quotes[i].InboundLeg === null)) {
+      if (inboundPartialDate.length) {
         flightMessage += "Return:" ;
 
-        //flightMessage += searchCarrierId(data, data.Quotes[i].InboundLeg.CarrierIds[0]) + "\n";
+        flightMessage += searchCarrierId(data, data.Quotes[i].InboundLeg.CarrierIds[0]) + "\n";
 
-        //flightMessage += searchCity(data, data.Quotes[i].InboundLeg.OriginId, data.Quotes[i].InboundLeg.DestinationId) + "\n";
+        flightMessage += searchCity(data, data.Quotes[i].InboundLeg.OriginId) + " ✈ " + searchCity(data,data.Quotes[i].InboundLeg.DestinationId) + "\n";
+
       }
 
       sendTextMessage(recipientId, flightMessage);
