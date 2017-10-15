@@ -237,7 +237,7 @@ function searchInData(recipientId, data) {
 
 function searchCity(data, origId, destId) {
 
-  var orig = "a";
+  var orig = "alea " + data.Places[4].SkyscannerCode;
   var dest = "b";
   for (var j = 0; j < data.Places.lenght; ++j) {
     if (data.Places[j].PlaceId == origId) orig += "ciudadencontrada";//data.Places[j].SkyscannerCode;
