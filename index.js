@@ -219,7 +219,7 @@ function searchInData(recipientId, data) {
 
       flightMessage += searchCarrierId(data, data.Quotes[i].OutboundLeg.CarrierIds[0]) + "\n";
 
-      console.log(data.Quotes[i].OutboundLeg.OriginId);
+      flightMessage += data.Quotes[i].OutboundLeg.OriginId;
 
       //flightMessage += searchCity(data, data.Quotes[i].OutboundLeg.OriginId, data.Quotes[i].OutboundLeg.DestinationId) + "\n";
 
